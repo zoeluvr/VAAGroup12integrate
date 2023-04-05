@@ -1,7 +1,7 @@
 baseURL: https://neon-gumption-4a143e.netlify.app/
 languageCode: en-us
 defaultContentLanguage: en
-title: Hugo Hermit
+title: Loan Default Prediction
 theme: hermit
 pygmentsCodefences: yes
 pygmentsUseClasses: yes
@@ -16,28 +16,25 @@ taxonomies:
   tag: tags
 params:
   code_copy_button: yes
+  bgImg : "/dollar.png"
   dateform: Jan 2, 2006
   dateformNum: '2006-01-02'
   dateformNumTime: 2006-01-02 15:04 -0700
   dateformShort: Jan 2
-  footerCopyright: ' &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/"
-    target="_blank" rel="noopener">CC BY-NC 4.0</a>'
-  homeSubtitle: A minimal and fast theme for Hugo.
+  homeSubtitle: Visual Analysis and Applcation - Group 12
   justifyContent: no
   relatedPosts: no
-  social:
-    - name: twitter
-      url: https://twitter.com/
-    - name: instagram
-      url: https://instagram.com/
-    - name: github
-      url: https://github.com/
-  themeColor: '#494f5c'
 menu:
   main:
-    - name: Posts
-      url: posts/
+    - name: Introduction
+      url: introduction/
       weight: 10
-    - name: About
-      url: about-hugo/
+    - name: Proposal
+      url: proposal/
       weight: 20
+    - name: Poster
+      url: poster/
+      weight: 30
+    - name: Shiny App
+      url: shiny_app/
+      weight: 40

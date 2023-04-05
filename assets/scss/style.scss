@@ -19,8 +19,9 @@
 }
 
 html {
-  background: $light-grey;
+  background: #666999;
   line-height: 1.6;
+  font-size: 1.3em;
   letter-spacing: .06em;
   scroll-behavior: smooth;
 }
@@ -85,6 +86,10 @@ blockquote {
   }
 }
 
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
 a {
   color: $text;
   text-decoration: none;
@@ -198,6 +203,7 @@ table {
 	width: 1px;
 	word-wrap: normal !important;
 }
+
 
 .screen-reader-text:focus {
 	background-color: #f1f1f1;

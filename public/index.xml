@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Loan Default Prediction</title>
+    <link>https://example.com/</link>
+    <description>Recent content on Loan Default Prediction</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction</title>
+      <link>https://example.com/introduction/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/introduction/</guid>
+      <description>Introduction on shiny home page: Loan Defaulters Description/ 1st Part In first part of shiny app, we will give you the description of the customers historical recording, including the loan amount, education situation and employment pattern.
+Correlation Exploration/ 2rd Part The second part will explore the correlation between different factors to see if there are linear or non-linear correlation, as well as the strength and direction of the relationship.
+Prediction Model/ 3nd part In last part, we built up prediction model to forecast the loan repayment results based on different input information.</description>
+    </item>
+    
+    <item>
+      <title>Poster</title>
+      <link>https://example.com/poster/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/poster/</guid>
+      <description>Click here to view and download the poster. </description>
+    </item>
+    
+    <item>
+      <title>Proposal</title>
+      <link>https://example.com/proposal/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/proposal/</guid>
+      <description>Motivation Providing profitable and high-impact loans to clients are the main business model of SuperLender. But it is necessary to predict the risks of providing loans to clients. Loan default can cause revenue damage. On the contrary, the inaccurate prediction of the risks can also hurt the reputation of company. Therefore, in this project, we focus on load default prediction which can help SuperLender grab the most revenue.
+Set the Scenario SuperLender is a local digital lending company that can provide loans to clients, but if the company could not estimate the property background and do a wrong decision for the clients, it can cause revenue and reputation loss.</description>
+    </item>
+    
+    <item>
+      <title>Shiny App</title>
+      <link>https://example.com/shiny_app/</link>
+      <pubDate>Sun, 02 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/shiny_app/</guid>
+      <description>You are warmly welcomed to try our app by yourself [here]!
+Let&amp;rsquo;s do something interesting!</description>
+    </item>
+    
+  </channel>
+</rss>
