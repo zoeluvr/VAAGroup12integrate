@@ -1,0 +1,161 @@
+---
+title: "run_model"
+---
+
+```{r}
+pacman::p_load(readxl, knitr, tidymodels, yardstick, ranger, tidyverse)
+```
+
+```{r}
+loan <- read_xlsx("data/loan.xlsx")
+```
+
+```{r}
+loan_split <- initial_split(loan, prop = 0.75,
+                               strata = good_bad_flag)
+```
+
+```{r}
+loan_training <- loan_split %>% 
+  training()
+
+loan_test <- loan_split %>% 
+  testing()
+```
+
+```{r}
+nrow(loan_training)
+nrow(loan_test)
+```
+
+```{r}
+logistic_model <- logistic_reg() %>% 
+  set_engine('glm') %>% 
+  set_mode('classification')
+```
+
+```{r}
+loan_training$good_bad_flag <- factor(loan_training$good_bad_flag)
+loan_test$good_bad_flag <- factor(loan_test$good_bad_flag)
+```
+
+```{r}
+## Potential var: Totaldue, Termdays, Total_loan, Default_ratio, Age, Employment, Education
+logistic_fit <- logistic_model %>% 
+  fit(good_bad_flag ~ Loannumber + Totaldue + Termdays + Total_loan + Default_ratio + Employment,
+      data = loan_training)
+logistic_fit
+```
+
+```{r}
+class_preds <- predict(logistic_fit, new_data = loan_test,
+                       type = 'class')
+```
+
+```{r}
+prob_preds <- predict(logistic_fit, new_data = loan_test, 
+                      type = 'prob')
+```
+
+```{r}
+loan_results <- loan_test %>% 
+  select(good_bad_flag) %>% 
+  bind_cols(class_preds, prob_preds)
+
+# View results tibble
+loan_results
+```
+
+```{r}
+conf_mat(loan_results, truth = good_bad_flag,
+         estimate = .pred_class)
+```
+
+```{r}
+accuracy(loan_results, truth = good_bad_flag,
+         estimate = .pred_class)
+```
+
+```{r}
+sens(loan_results, truth = good_bad_flag,
+     estimate = .pred_class)
+```
+
+```{r}
+conf_mat(loan_results,
+         truth = good_bad_flag,
+         estimate = .pred_class) %>% 
+  # Create a heat map
+  autoplot(type = 'heatmap')
+```
+
+```{r}
+conf_mat(loan_results,
+         truth = good_bad_flag,
+         estimate = .pred_class) %>% 
+  # Create a mosaic plot
+  autoplot(type = 'mosaic')
+```
+
+```{r}
+threshold_df <- loan_results %>% 
+  roc_curve(truth = good_bad_flag, .pred_Bad)
+```
+
+```{r}
+threshold_df %>% 
+  autoplot()
+```
+
+```{r}
+roc_auc(loan_results,
+        truth = good_bad_flag, 
+        .pred_Bad)
+```
+
+##random forest start
+
+```{r}
+# Create a preprocessing recipe
+loan_recipe <- recipe(good_bad_flag ~ Totaldue + Termdays + Total_loan + Default_ratio + Employment, data = loan_training) %>%
+  step_normalize(all_predictors())
+
+# Preprocess the training and testing data frames
+loan_train_processed <- prep(loan_recipe, loan_training) %>% bake(new_data = NULL)
+loan_test_processed <- prep(loan_recipe, loan_test) %>% bake(new_data = NULL)
+```
+
+```{r}
+# Create the model specification
+loan_rf_spec <- rand_forest(mtry = 3, trees = 100) %>%
+  set_engine("ranger", importance = "permutation") %>%
+  set_mode("classification")
+```
+
+```{r}
+loan_rf_fit <- loan_rf_spec %>% fit(good_bad_flag ~ ., data = loan_train_processed)
+```
+
+```{r}
+loan_rf_preds <- predict(loan_rf_fit, loan_test_processed) %>% bind_cols(loan_test_processed)
+loan_rf_preds
+```
+
+```{r}
+loan_rf_perf <- loan_rf_preds %>%
+  metrics(truth = good_bad_flag, estimate = .pred_class)
+loan_rf_perf
+```
+
+#plot the ROC
+
+```{r}
+loan_rf_prob <- predict(loan_rf_fit, new_data = loan_test_processed, type = "prob")
+loan_rf_results <- tibble(
+  truth = loan_test$good_bad_flag,
+  .pred_bad = loan_rf_prob$.pred_Bad
+)
+
+loan_rf_auc <- loan_rf_results %>% 
+  roc_auc(truth, .pred_bad)
+```
