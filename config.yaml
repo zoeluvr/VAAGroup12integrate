@@ -29,7 +29,7 @@ menu:
     - name: Introduction
       url: introduction/
       weight: 10
-    - name: Proposal
+    - name: Project Report
       url: proposal/
       weight: 20
     - name: Poster
