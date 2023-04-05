@@ -70,9 +70,7 @@ Random forest: Random forest is a supervised machine learning algorithm used for
 
 The team applied R and Shiny to build up an interactive webpage which showed the relationship between different variables. The team also built machine learning model in Rstudio which was used to predict future loan repayment.
 
-## Early Prototype or Storyboard
-
-### Overview and Correlation Tab
+## Our Storyboard
 
 After giving the detailed information of our clients in terms of education status, bank location, and loan terms, the team tried to integrate the information together to see the correlation between the client’s portrait and loan performance. The audience can use the select button to present their desired information in detail. 
  
